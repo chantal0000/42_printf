@@ -6,27 +6,32 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:39:27 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/30 16:37:52 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:22:27 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h> //for variadic functions
-#include <stdio.h>
-#include <unistd.h>
+#include "libftprintf.h"
 
+#include <stdio.h>
 
 
 /*
 cases to handle:
+done:
 1. %c Prints a single character.
 2. %s Prints a string (as defined by the common C convention).
+
+to do:
 3. %p The void * pointer argument has to be printed in hexadecimal format.
 4. %d Prints a decimal (base 10) number.
+	- prints but does not count
 5. %i Prints an integer in base 10.
 6. %u Prints an unsigned decimal (base 10) number.
 7. %x Prints a number in hexadecimal (base 16) lowercase format.
 8. %X Prints a number in hexadecimal (base 16) uppercase format.
 9. %% Prints a percent sign.
+
+RETURN NULL EVERYWHERE?
 */
 /*
 char	ft_identify_input_specifier(va_list args, const char format);
@@ -38,59 +43,11 @@ char	ft_identify_input_specifier(va_list args, const char format);
 
 }*/
 
-int	ft_print_char(int c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_print_str(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (s == NULL)
-		return (0);
-	while (s[i])
-	{
-		ft_print_char(s[i]);
-		i++;
-	}
-	return(i);
-}
-// count the numbers somehow?
-void	put_num(char n)
-{
-	write(1, &n, 1);
-}
-
-int	ft_print_nbr(int nb)
-{
-	int i;
-
-	i = 0;
-	if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-	}
-	else if (nb < 0)
-	{
-		write(1, "-", 1);
-		ft_print_nbr(-nb);
-	}
-	else if (nb > 9)
-	{
-		ft_print_nbr(nb / 10);
-		ft_print_nbr(nb % 10);
-	}
-	else
-		put_num(nb + 48);
-	return (i);
-}
 
 
 
-int ft_eval_specifier(va_list args, const char specifier)
+
+int	ft_eval_specifier(va_list args, const char specifier)
  {
 	int	length;
 
@@ -101,7 +58,7 @@ int ft_eval_specifier(va_list args, const char specifier)
 		length = length + ft_print_str(va_arg(args, char *));
 	/*else if (specifier == 'p')
 	//...*/
-	else if (specifier == 'd')
+	else if (specifier == 'd' || specifier == 'i')
 		length = length + ft_print_nbr(va_arg(args, int));
 	/*
 	else if (specifier == 'i')
@@ -145,14 +102,20 @@ int	ft_printf(const char *format, ...)
 		}
 	}
 	va_end(args);
+	/// ALARM DELTE PRINTF
 	printf("length: %d\n", length);
 	return (length);
 }
 
+/* MAIN FUNCTION */
+
+
 int main()
 {
-	ft_printf("%%hello %c %s %d \n", 'o', "wo", 42);
-	ft_printf("%d", 421);
+	ft_printf("char c: hello %c\n", 'o');
+	ft_printf("int i 421: %i\n", 421);
+	ft_printf("int d -42: %d\n", -42);
+	ft_printf("percent: %% hello\n");
 }
 
 ////

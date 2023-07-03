@@ -6,10 +6,11 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:25:41 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/06/30 16:10:38 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:22:25 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libftprintf.h"
 /*
 cases to handle:
 1. %c Prints a single character.
@@ -23,4 +24,37 @@ cases to handle:
 9. %% Prints a percent sign.
 */
 
+int	ft_print_char(int c)
+{
+	write(1, &c, 1);
+	return (1);
+}
 
+int	ft_print_str(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s == NULL)
+		return (0);
+	while (s[i])
+	{
+		ft_print_char(s[i]);
+		i++;
+	}
+	return(i);
+}
+
+
+int	ft_print_nbr(int nb)
+{
+	int		length;
+	char	*s;
+
+	length = 0;
+	s = ft_itoa(nb);
+	length = ft_strlen(s);
+	ft_putnbr_fd(nb, 1);
+
+	return (length);
+}
