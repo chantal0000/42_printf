@@ -6,11 +6,11 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:39:27 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/07/03 14:22:27 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:08:13 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 #include <stdio.h>
 
@@ -33,20 +33,6 @@ to do:
 
 RETURN NULL EVERYWHERE?
 */
-/*
-char	ft_identify_input_specifier(va_list args, const char format);
-{
-	if (c == 'c')
-		ft_putchar(c);
-	else
-		write(1, "else", 5);
-
-}*/
-
-
-
-
-
 int	ft_eval_specifier(va_list args, const char specifier)
  {
 	int	length;
@@ -54,27 +40,23 @@ int	ft_eval_specifier(va_list args, const char specifier)
 	length = 0;
 	if (specifier == 'c')
 		length = length + ft_print_char(va_arg(args, int));
-	else if(specifier == 's')
+	else if (specifier == 's')
 		length = length + ft_print_str(va_arg(args, char *));
-	/*else if (specifier == 'p')
-	//...*/
+	//else if (specifier == 'p')
+	//...
 	else if (specifier == 'd' || specifier == 'i')
 		length = length + ft_print_nbr(va_arg(args, int));
-	/*
-	else if (specifier == 'i')
-	//...
 	else if (specifier == 'u')
-	//...
+		length = length + ft_print_u_nbr(va_arg(args, unsigned int));
 	else if (specifier == 'x')
-	//...
+		length = length + ft_print_hex(va_arg(args, unsigned int), specifier);
 	else if (specifier == 'X')
-	//...*/
+		length = length + ft_print_hex(va_arg(args, unsigned int), specifier);
 	else if (specifier == '%')
-	length = length + ft_print_char('%');
-	else
-		return (0);
+		length = length + ft_print_char('%');
 	return (length);
- }
+}
+
 int	ft_printf(const char *format, ...)
 {
 	int	length;
@@ -85,37 +67,90 @@ int	ft_printf(const char *format, ...)
 	length = 0;
 	i = 0;
 	va_start(args, format);
-
+	if (format == NULL)
+	return (-1);
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			i++;
-			length = length + ft_eval_specifier(args, format[i]);
+
+			length = length + ft_eval_specifier(args, format[i + 1]);
 			i++;
 		}
 		else
-		{
 			length = length + ft_print_char(format[i]);
-
 		i++;
-		}
 	}
 	va_end(args);
 	/// ALARM DELTE PRINTF
-	printf("length: %d\n", length);
+	//printf("length: %d\n", length);
 	return (length);
 }
 
 /* MAIN FUNCTION */
 
-
 int main()
 {
-	ft_printf("char c: hello %c\n", 'o');
+	//printf("i: %i\n", ft_printf("char c: hello %c\n", 'o'));
+/*
+	ft_printf("%c\n", '0');
+	ft_printf(" %c\n", '0' - 256);
+	ft_printf("%c \n", '0' + 256);
+	ft_printf(" %c %c %c \n", ' ', ' ', ' ');
+	ft_printf(" %c %c %c \n", '1', '2', '3');
+	ft_printf(" %c %c %c \n", '2', '1', 0);
+	ft_printf(" %c %c %c \n", 0, '1', '2');
+
+	printf("o:%c\n", '0');
+	printf("o: %c\n", '0' - 256);
+	printf("o:%c \n", '0' + 256);
+	printf("o: %c %c %c \n", ' ', ' ', ' ');
+	printf("o: %c %c %c \n", '1', '2', '3');
+	printf("o: %c %c %c \n", '2', '1', 0);
+	printf("o: %c %c %c \n", 0, '1', '2');
+
+	ft_printf("%s\n", "hi");
+	ft_printf(" %s\n", "");
+	ft_printf("%s \n", "");
+	ft_printf(" %s \n", "");
+	ft_printf(" %s \n", "-");
+	ft_printf(" %s %s \n", "", "-");
+	ft_printf(" %s %s \n", " - ", "");
+	ft_printf(" %s %s %s %s %s \n", " - ", "", "4", "", "2 ");
+	ft_printf(" NULL %s NULL \n", NULL);
+
+	printf("o:%s\n", "");
+	printf("o: %s\n", "");
+	printf("o:%s \n", "");
+	printf("o: %s \n", "");
+	printf("o: %s \n", "-");
+	printf("o: %s %s \n", "", "-");
+	printf("o: %s %s \n", " - ", "");
+	printf("o: %s %s %s %s %s \n", " - ", "", "4", "", "2 ");
+	printf("o: NULL %s NULL \n", NULL);
+
 	ft_printf("int i 421: %i\n", 421);
 	ft_printf("int d -42: %d\n", -42);
-	ft_printf("percent: %% hello\n");
+	ft_printf("percent: %%\n");
+	ft_printf("int u -420: %u\n", -420);
+	ft_printf("int u 20: %u\n", 20);
+
+	printf("i: %i\n", printf("u: %u\n", -420));
+	printf("u: %u\n", 20);*/
+	int decimalNumber = 22113;
+
+	ft_printf("Decimal: %d\n", decimalNumber);
+	//ft_printf("x: %x\n", 255);
+	ft_printf("X: %X\n", decimalNumber);
+	ft_printf("x: %x\n", decimalNumber);
+//	ft_printf("X: %X\n", 0);
+
+	printf("Decimal: %x\n", decimalNumber);
+//	printf("x: %x\n", 255);
+	printf("X: %X\n", decimalNumber);
+	ft_printf("x: %x\n", decimalNumber);
+//	printf("X: %X\n", 0);
+
 }
 
 ////

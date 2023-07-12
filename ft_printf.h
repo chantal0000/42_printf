@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:00:45 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/07/03 14:22:21 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:28:10 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 /*write*/
 # include <unistd.h>
 /* malloc */
@@ -26,8 +26,11 @@ int	ft_eval_specifier(va_list args, const char specifier);
 int	ft_printf(const char *format, ...);
 
 /* ft_printf_utils.c */
-int	ft_print_char(int c);
+int	ft_print_char(char c);
 int	ft_print_str(char *s);
 int	ft_print_nbr(int nb);
+int ft_print_u_nbr(unsigned int nb);
+int	ft_print_hex(unsigned int nb, const char format);
+int	ft_put_hex(unsigned int nb, char specifier);
 
 #endif
