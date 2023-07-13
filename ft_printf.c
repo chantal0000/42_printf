@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:39:27 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/07/13 18:18:12 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:51:25 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ int	ft_printf(const char *format, ...)
 
 int main()
 {
+	ft_printf("m: %X \n", 0);
+	printf("o: %X \n", 0);
+
+	ft_printf("m: %x \n", 0);
+	printf("o: %x \n", 0);
 
 	ft_printf("m: %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%
 	%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n",
@@ -115,4 +120,5 @@ printf(" %p %p \n", 0,0);
 
 
 return (0);
-}*/
+}
+*/
