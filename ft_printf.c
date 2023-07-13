@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:39:27 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/07/13 13:39:15 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:18:12 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ int	ft_printf(const char *format, ...)
 	length = 0;
 	i = 0;
 	va_start(args, format);
-	if (format == NULL)
-		return (-1);
 	while (format[i])
 	{
 		if (format[i] == '%')
@@ -79,3 +77,42 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (length);
 }
+/*
+#include <limits.h>
+#include <stdio.h>
+
+int main()
+{
+
+	ft_printf("m: %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%
+	%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n",
+	'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0",
+	 0, 0 ,0 ,0, 42, 0);
+	printf("o: %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%%
+	%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B',
+	"-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+
+	//ft_printf("%u\n", -4);
+	//printf("%u\n", -4);
+
+ft_printf("m: %p \n", -1);
+ft_printf("m: %p \n", 15);
+ft_printf("m: %p \n", 16);
+ft_printf("m: %p \n", 17);
+ft_printf("m: %p %p \n", LONG_MIN, LONG_MAX);
+ft_printf("m: %p %p \n", INT_MIN, INT_MAX);
+ft_printf("m: %p %p \n", ULONG_MAX, -ULONG_MAX);
+ft_printf("m: %p %p \n", 0,0);
+
+printf(" %p \n", -1);
+printf(" %p \n", 15);
+printf(" %p \n", 16);
+printf(" %p \n", 17);
+printf(" %p %p \n", LONG_MIN, LONG_MAX);
+printf(" %p %p \n", INT_MIN, INT_MAX);
+printf(" %p %p \n", ULONG_MAX, -ULONG_MAX);
+printf(" %p %p \n", 0,0);
+
+
+return (0);
+}*/

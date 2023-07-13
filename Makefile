@@ -6,7 +6,7 @@
 #    By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 10:34:54 by chbuerge          #+#    #+#              #
-#    Updated: 2023/07/05 11:02:09 by chbuerge         ###   ########.fr        #
+#    Updated: 2023/07/13 14:08:40 by chbuerge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ LIBFT_DIR = ./libft
 
 
 SRCS	 = 		ft_printf.c \
-				ft_printf_utils.c
+				ft_printf_utils.c \
+				ft_print_hex.c \
+				ft_unsigned.c
 
 OBJS	 = ${SRCS:.c=.o}
 

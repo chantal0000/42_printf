@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:38:50 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/07/13 13:39:04 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:39:34 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,25 @@ ft_putchar_fd((nb - 10 + 'A'), 1);
 
 int	ft_print_hex(unsigned long int nb, char specifier)
 {
-	char	*str;
-	int		length;
+	int length;
 
 	length = 0;
 	if (nb == '0')
+	{
 		write(1, "0", 1);
+		return (1);
+	}
 	else if (nb > 15)
 	{
-		ft_print_hex(nb / 16, specifier);
-		ft_print_hex(nb % 16, specifier);
+		length = length + ft_print_hex(nb / 16, specifier);
+		length = length + ft_print_hex(nb % 16, specifier);
 	}
 	else
 	{
 		if (nb <= 9)
+		{
 			ft_putchar_fd((nb + 48), 1);
+		}
 		else
 		{
 			if (specifier == 'X')
@@ -49,8 +53,7 @@ int	ft_print_hex(unsigned long int nb, char specifier)
 			else if (specifier == 'x')
 				ft_putchar_fd((nb - 10 + 'a'), 1);
 		}
+		length++;
 	}
-	str = ft_itoa(nb);
-	length = ft_strlen(str);
 	return (length);
 }

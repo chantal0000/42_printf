@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:25:41 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/07/13 13:40:49 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/07/13 18:20:38 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int	ft_print_nbr(int nb)
 	s = ft_itoa(nb);
 	length = ft_strlen(s);
 	ft_putnbr_fd(nb, 1);
+	free (s);
 	return (length);
 }

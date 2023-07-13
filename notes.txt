@@ -1,0 +1,13 @@
+works:
+
+- c
+- s
+- d & i
+- u
+- %
+
+does not work:
+
+- p
+- x & X
+
