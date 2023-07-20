@@ -6,11 +6,13 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:40:37 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/07/13 18:11:20 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:30:12 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+//6. %u Prints an unsigned decimal (base 10) number.
 
 /* %u */
 void	ft_putnbr_u(unsigned int n)

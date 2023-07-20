@@ -6,7 +6,7 @@
 /*   By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:38:50 by chbuerge          #+#    #+#             */
-/*   Updated: 2023/07/13 18:50:18 by chbuerge         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:27:24 by chbuerge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	ft_print_hex(unsigned long int nb, char specifier)
 	length = 0;
 	if (nb > 15)
 	{
-		length = length + ft_print_hex(nb / 16, specifier);
-		length = length + ft_print_hex(nb % 16, specifier);
+		length += ft_print_hex(nb / 16, specifier);
+		length += ft_print_hex(nb % 16, specifier);
 	}
 	else
 	{
