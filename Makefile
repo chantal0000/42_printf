@@ -6,7 +6,7 @@
 #    By: chbuerge <chbuerge@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 10:34:54 by chbuerge          #+#    #+#              #
-#    Updated: 2023/07/20 11:36:30 by chbuerge         ###   ########.fr        #
+#    Updated: 2023/07/20 14:16:42 by chbuerge         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,29 +42,29 @@ all:		${NAME}
 makelibft:
 # -C allows you to change directories before running make process
 # enter libft directory and run the make process there
-		make -C $(LIBFT_DIR)
+		@make -C $(LIBFT_DIR)
 # cp -> copies 'libft.a' into the current diectory '.'
-		cp $(LIBFT_DIR)/$(LIBFT_NAME) .
+		@cp $(LIBFT_DIR)/$(LIBFT_NAME) .
 # rename the libft.a to libftprintf.a
-		mv $(LIBFT_NAME) $(NAME)
+		@mv $(LIBFT_NAME) $(NAME)
 # compiles the object files into the libftprintf.a static library (ar, archive)
 ${NAME}:	makelibft ${OBJS}
-					ar rcs ${NAME} ${OBJS}
+					@ar -r ${NAME} ${OBJS}
 
 # Remove object files and executables
 clean:
-	rm -f ${OBJS}
-	cd $(LIBFT_DIR) && make clean
+	@rm -f ${OBJS}
+	@cd $(LIBFT_DIR) && make clean
 
 # Remove object files, executables, and the libft library
 fclean:	clean
-	rm -f ${NAME}
-	cd $(LIBFT_DIR) && make fclean
+	@rm -f ${NAME}
+	@cd $(LIBFT_DIR) && make fclean
 
 # Rebuild the project from scratch
 re:	fclean all
 
 
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft
 
